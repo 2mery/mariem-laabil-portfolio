@@ -1,539 +1,653 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mariem Laabil — Data Analyst CX</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0a1628;
-            color: #e8ecf1;
-            line-height: 1.6;
-        }
-        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
-        header {
-            background: linear-gradient(135deg, #0a1628 0%, #111d32 100%);
-            padding: 60px 0 40px;
-            text-align: center;
-            border-bottom: 3px solid #c41e3a;
-        }
-        .badge {
-            display: inline-block;
-            background: rgba(34, 197, 94, 0.15);
-            color: #22c55e;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-        h1 {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-        h1 span {
-            background: linear-gradient(135deg, #e63950, #d4af37);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .subtitle {
-            font-size: 18px;
-            color: #8b9dc3;
-            max-width: 600px;
-            margin: 0 auto 30px;
-        }
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 30px;
-        }
-        .stat h3 { font-size: 32px; font-weight: 700; color: #fff; }
-        .stat p { font-size: 12px; color: #5a6a8a; text-transform: uppercase; }
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        .btn {
-            padding: 14px 28px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 15px;
-            display: inline-block;
-        }
-        .btn-primary { background: #c41e3a; color: white; }
-        .btn-secondary {
-            background: transparent;
-            color: #e8ecf1;
-            border: 2px solid rgba(196, 30, 58, 0.3);
-        }
-        section { padding: 50px 0; }
-        section.alt { background: #111d32; }
-        .section-title {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .section-title::before {
-            content: '';
-            width: 4px;
-            height: 28px;
-            background: #c41e3a;
-            border-radius: 2px;
-        }
-        .section-desc { color: #8b9dc3; margin-bottom: 30px; font-size: 15px; }
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .card {
-            background: #0f1a2e;
-            border: 1px solid rgba(196, 30, 58, 0.15);
-            border-radius: 12px;
-            padding: 24px;
-        }
-        .card.featured {
-            border-color: rgba(196, 30, 58, 0.3);
-            background: linear-gradient(135deg, #0f1a2e 0%, rgba(196, 30, 58, 0.05) 100%);
-        }
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 8px;
-        }
-        .card h3 { font-size: 18px; margin-bottom: 4px; }
-        .card .date {
-            font-size: 12px;
-            color: #5a6a8a;
-            background: rgba(90, 106, 138, 0.15);
-            padding: 4px 10px;
-            border-radius: 4px;
-        }
-        .card .role { color: #e63950; font-weight: 600; font-size: 14px; margin-bottom: 12px; }
-        .card p { color: #8b9dc3; font-size: 14px; line-height: 1.7; margin-bottom: 12px; }
-        .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-        .tag {
-            background: rgba(196, 30, 58, 0.1);
-            color: #8b9dc3;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            border: 1px solid rgba(196, 30, 58, 0.2);
-        }
-        .steps { max-width: 700px; margin: 0 auto; }
-        .step {
-            display: flex;
-            gap: 20px;
-            padding: 20px;
-            background: #0f1a2e;
-            border: 1px solid rgba(196, 30, 58, 0.15);
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-        .step-num {
-            width: 40px;
-            height: 40px;
-            background: #0a1628;
-            border: 2px solid #c41e3a;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: #e63950;
-            flex-shrink: 0;
-        }
-        .step.final .step-num { background: #c41e3a; color: white; }
-        .step h4 { font-size: 16px; margin-bottom: 6px; }
-        .step p { color: #8b9dc3; font-size: 14px; }
-        .arrow { text-align: center; color: #c41e3a; font-size: 20px; margin: -5px 0; opacity: 0.5; }
-        .skill-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .skill-box {
-            background: #0f1a2e;
-            border: 1px solid rgba(196, 30, 58, 0.15);
-            border-radius: 12px;
-            padding: 24px;
-        }
-        .skill-box h3 { font-size: 16px; margin-bottom: 20px; }
-        .skill-row { margin-bottom: 16px; }
-        .skill-row .label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 6px;
-            font-size: 13px;
-        }
-        .bar {
-            height: 6px;
-            background: #0a1628;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-        .bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #e63950, #d4af37);
-            border-radius: 3px;
-        }
-        .lang-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        .lang-card {
-            background: #0f1a2e;
-            border: 1px solid rgba(196, 30, 58, 0.15);
-            border-radius: 10px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .lang-flag { font-size: 32px; }
-        .lang-card h4 { font-size: 16px; margin-bottom: 4px; }
-        .lang-card p { font-size: 13px; color: #5a6a8a; }
-        .dots { display: flex; gap: 4px; margin-top: 6px; }
-        .dot { width: 6px; height: 6px; border-radius: 50%; background: #5a6a8a; }
-        .dot.active { background: #c41e3a; }
-        .contact-section { text-align: center; padding: 60px 0; }
-        .contact-section h2 { font-size: 36px; margin-bottom: 15px; }
-        .contact-section > .container > p {
-            color: #8b9dc3;
-            max-width: 500px;
-            margin: 0 auto 30px;
-            font-size: 16px;
-        }
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
-        .contact-link {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            background: #0f1a2e;
-            border: 1px solid rgba(196, 30, 58, 0.2);
-            border-radius: 8px;
-            color: #e8ecf1;
-            text-decoration: none;
-            font-size: 14px;
-        }
-        .form-box { max-width: 500px; margin: 0 auto; text-align: left; }
-        .form-group { margin-bottom: 20px; }
-        .form-group label {
-            display: block;
-            margin-bottom: 6px;
-            color: #8b9dc3;
-            font-size: 14px;
-        }
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 14px;
-            background: #0f1a2e;
-            border: 1.5px solid rgba(196, 30, 58, 0.2);
-            border-radius: 8px;
-            color: #e8ecf1;
-            font-size: 15px;
-            font-family: inherit;
-        }
-        .form-group textarea { min-height: 120px; resize: vertical; }
-        .submit-btn {
-            width: 100%;
-            padding: 16px;
-            background: #c41e3a;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: inherit;
-        }
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: #5a6a8a;
-            font-size: 13px;
-            border-top: 1px solid rgba(196, 30, 58, 0.15);
-        }
-        @media (max-width: 600px) {
-            h1 { font-size: 32px; }
-            .stats { gap: 20px; }
-            .buttons { flex-direction: column; }
-            .btn { width: 100%; text-align: center; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mariem Laabil — Data Analyst CX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --navy2: #162236;
+      --red: #c8102e;
+      --red-light: #e63950;
+      --white: #f5f7fa;
+      --grey: #8a9bb0;
+      --card: #1a2d42;
+      --border: rgba(200,16,46,0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 4%;
+      background: rgba(13,27,42,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.3rem; font-weight: 800; letter-spacing: 2px;
+      color: var(--white);
+    }
+    .nav-logo span { color: var(--red); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--grey); text-decoration: none; font-size: .85rem;
+      letter-spacing: 1px; text-transform: uppercase; font-weight: 600;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--red); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 6rem 4% 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 55%; height: 100%;
+      background: linear-gradient(135deg, transparent 40%, rgba(200,16,46,0.06) 100%);
+      pointer-events: none;
+    }
+    .hero-accent {
+      position: absolute; left: -4rem; top: 0; bottom: 0;
+      width: 6px;
+      background: linear-gradient(180deg, transparent, var(--red), transparent);
+    }
+    .hero-content { max-width: 700px; position: relative; z-index: 1; }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(200,16,46,0.12);
+      border: 1px solid var(--red);
+      color: var(--red-light);
+      padding: .35rem .9rem; border-radius: 2rem;
+      font-size: .78rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; margin-bottom: 1.8rem;
+      animation: pulse-badge 2.5s ease-in-out infinite;
+    }
+    .badge-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--red); animation: blink 1.4s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+    @keyframes pulse-badge {
+      0%,100%{ box-shadow: 0 0 0 0 rgba(200,16,46,0.3); }
+      50%{ box-shadow: 0 0 0 6px rgba(200,16,46,0); }
+    }
+
+    h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 800; line-height: 1.0;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+    }
+    h1 .highlight { color: var(--red); }
+
+    .hero-sub {
+      font-size: 1.1rem; color: var(--grey); font-style: italic;
+      font-weight: 300; margin-bottom: 2rem; max-width: 520px;
+    }
+
+    .stats {
+      display: flex; gap: 2.5rem; margin-bottom: 2.5rem; flex-wrap: wrap;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.4rem; font-weight: 800; color: var(--red);
+      line-height: 1;
+    }
+    .stat-label { font-size: .72rem; color: var(--grey); letter-spacing: 1px; text-transform: uppercase; }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--red); color: #fff;
+      padding: .75rem 1.8rem; border-radius: 3px;
+      font-weight: 700; font-size: .9rem; letter-spacing: .5px;
+      text-decoration: none; transition: background .2s, transform .15s;
+      border: 2px solid var(--red);
+    }
+    .btn-primary:hover { background: var(--red-light); transform: translateY(-2px); }
+    .btn-outline {
+      border: 2px solid var(--border); color: var(--white);
+      padding: .75rem 1.8rem; border-radius: 3px;
+      font-weight: 600; font-size: .9rem; text-decoration: none;
+      transition: border-color .2s, color .2s, transform .15s;
+    }
+    .btn-outline:hover { border-color: var(--red); color: var(--red); transform: translateY(-2px); }
+
+    /* SECTIONS */
+    section { padding: 5rem 4%; }
+    .section-label {
+      font-size: .72rem; color: var(--red); letter-spacing: 3px;
+      text-transform: uppercase; font-weight: 700; margin-bottom: .6rem;
+    }
+    h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800; letter-spacing: -0.5px;
+      margin-bottom: .4rem;
+    }
+    .section-sub { color: var(--grey); font-size: .95rem; margin-bottom: 3rem; }
+    .divider { width: 48px; height: 3px; background: var(--red); margin: 1rem 0 2.5rem; }
+
+    /* PROJECTS */
+    #projects { background: var(--navy2); }
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.8rem;
+    }
+    .project-card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-left: 4px solid var(--red);
+      border-radius: 6px;
+      padding: 2rem;
+      transition: transform .2s, box-shadow .2s;
+      position: relative; overflow: hidden;
+    }
+    .project-card::after {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 80px; height: 80px;
+      background: radial-gradient(circle at top right, rgba(200,16,46,0.08), transparent 70%);
+    }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.3); }
+    .project-org {
+      font-size: .72rem; color: var(--red); letter-spacing: 2px;
+      text-transform: uppercase; font-weight: 700; margin-bottom: .5rem;
+    }
+    .project-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.5rem; font-weight: 800; margin-bottom: .3rem;
+    }
+    .project-period { font-size: .8rem; color: var(--grey); margin-bottom: 1rem; }
+    .project-desc { color: rgba(245,247,250,0.8); font-size: .9rem; margin-bottom: 1.2rem; line-height: 1.7; }
+    .project-tasks { list-style: none; margin-bottom: 1.5rem; }
+    .project-tasks li {
+      font-size: .85rem; color: rgba(245,247,250,0.7);
+      padding: .3rem 0 .3rem 1.1rem; position: relative;
+    }
+    .project-tasks li::before {
+      content: '→'; position: absolute; left: 0; color: var(--red); font-size: .8rem;
+    }
+    .project-highlight {
+      background: rgba(200,16,46,0.1); border: 1px solid rgba(200,16,46,0.3);
+      border-radius: 4px; padding: .6rem 1rem;
+      font-size: .82rem; color: var(--red-light); font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      color: var(--grey); font-size: .72rem; font-weight: 700;
+      padding: .25rem .65rem; border-radius: 3px; letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+
+    /* EXPERIENCE */
+    #experience { background: var(--navy); }
+    .timeline { position: relative; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px; background: linear-gradient(180deg, var(--red), transparent);
+    }
+    .timeline-item {
+      padding-left: 2rem; margin-bottom: 2.5rem; position: relative;
+    }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -5px; top: 6px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--red); border: 2px solid var(--navy);
+    }
+    .tl-date { font-size: .75rem; color: var(--red); letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; }
+    .tl-company { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 800; margin: .2rem 0; }
+    .tl-role { font-size: .85rem; color: var(--grey); margin-bottom: .7rem; font-style: italic; }
+    .tl-desc { font-size: .88rem; color: rgba(245,247,250,0.75); margin-bottom: .8rem; }
+    .tl-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .tl-tag {
+      background: rgba(200,16,46,0.12); border: 1px solid rgba(200,16,46,0.25);
+      color: var(--red-light); font-size: .7rem; font-weight: 700;
+      padding: .2rem .6rem; border-radius: 3px; letter-spacing: .5px;
+    }
+
+    /* METHODOLOGY */
+    #methodology { background: var(--navy2); }
+    .steps-row {
+      display: flex; gap: 0; align-items: stretch; flex-wrap: wrap;
+    }
+    .step {
+      flex: 1; min-width: 140px;
+      background: var(--card); border: 1px solid rgba(255,255,255,0.06);
+      padding: 1.8rem 1.2rem; text-align: center; position: relative;
+      transition: background .2s;
+    }
+    .step:hover { background: rgba(200,16,46,0.08); }
+    .step:not(:last-child)::after {
+      content: '→'; position: absolute; right: -12px; top: 50%;
+      transform: translateY(-50%); color: var(--red); font-size: 1.2rem; z-index: 2;
+    }
+    .step-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.5rem; font-weight: 800; color: var(--red);
+      opacity: .35; line-height: 1;
+    }
+    .step-title { font-weight: 700; font-size: .95rem; margin: .4rem 0 .3rem; }
+    .step-desc { font-size: .78rem; color: var(--grey); }
+
+    /* SKILLS */
+    #skills { background: var(--navy); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
+    .skill-group h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem; font-weight: 800; margin-bottom: 1rem;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .skill-group h3 span { color: var(--red); }
+    .skill-bar-wrap { margin-bottom: .8rem; }
+    .skill-name-row { display: flex; justify-content: space-between; font-size: .82rem; margin-bottom: .3rem; }
+    .skill-pct { color: var(--red); font-weight: 700; }
+    .bar-bg { background: rgba(255,255,255,0.07); border-radius: 2px; height: 4px; }
+    .bar-fill {
+      height: 4px; border-radius: 2px;
+      background: linear-gradient(90deg, var(--red), var(--red-light));
+      transition: width 1s ease;
+    }
+
+    /* LANGUAGES */
+    #langues { background: var(--navy2); }
+    .lang-grid { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+    .lang-card {
+      background: var(--card); border: 1px solid rgba(255,255,255,0.07);
+      padding: 1.5rem 2rem; border-radius: 6px; text-align: center;
+      min-width: 120px; transition: border-color .2s;
+    }
+    .lang-card:hover { border-color: var(--red); }
+    .lang-flag { font-size: 2rem; margin-bottom: .5rem; }
+    .lang-name { font-weight: 700; font-size: .9rem; }
+    .lang-level { font-size: .75rem; color: var(--grey); margin-top: .2rem; }
+
+    /* FORMATION */
+    #formation { background: var(--navy); }
+    .edu-card {
+      background: var(--card); border: 1px solid rgba(255,255,255,0.07);
+      border-left: 4px solid var(--red);
+      border-radius: 6px; padding: 1.8rem 2rem; margin-bottom: 1.5rem;
+    }
+    .edu-school { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 800; }
+    .edu-degree { color: var(--grey); font-size: .9rem; margin: .3rem 0; }
+    .edu-period { font-size: .75rem; color: var(--red); font-weight: 700; letter-spacing: 1px; }
+    .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+    .cert-item {
+      background: var(--card); border: 1px solid rgba(255,255,255,0.07);
+      padding: 1rem 1.2rem; border-radius: 6px;
+      display: flex; align-items: flex-start; gap: .8rem;
+      transition: border-color .2s;
+    }
+    .cert-item:hover { border-color: var(--red); }
+    .cert-icon { font-size: 1.3rem; margin-top: .1rem; }
+    .cert-name { font-weight: 700; font-size: .88rem; }
+    .cert-by { font-size: .75rem; color: var(--grey); }
+
+    /* CONTACT */
+    #contact { background: var(--navy2); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .contact-info p { color: var(--grey); font-size: .9rem; margin-bottom: 1.5rem; max-width: 400px; }
+    .contact-links { display: flex; flex-direction: column; gap: .8rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: .8rem;
+      color: var(--white); text-decoration: none; font-size: .9rem;
+      transition: color .2s;
+    }
+    .contact-link:hover { color: var(--red); }
+    .contact-link-icon {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(200,16,46,0.12); border: 1px solid rgba(200,16,46,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .9rem; flex-shrink: 0;
+    }
+    .contact-form { display: flex; flex-direction: column; gap: .9rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+    .form-input, .form-textarea {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      color: var(--white); padding: .75rem 1rem; border-radius: 4px;
+      font-family: 'Barlow', sans-serif; font-size: .88rem;
+      transition: border-color .2s; outline: none; width: 100%;
+    }
+    .form-input:focus, .form-textarea:focus { border-color: var(--red); }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--grey); }
+    .form-textarea { min-height: 110px; resize: vertical; }
+    .btn-submit {
+      background: var(--red); color: #fff; border: none;
+      padding: .8rem 2rem; border-radius: 4px; cursor: pointer;
+      font-family: 'Barlow', sans-serif; font-weight: 700; font-size: .9rem;
+      letter-spacing: .5px; transition: background .2s, transform .15s;
+      align-self: flex-start;
+    }
+    .btn-submit:hover { background: var(--red-light); transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 2rem 4%;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      font-size: .78rem; color: var(--grey);
+    }
+
+    /* AVAILABLE BANNER */
+    .available-strip {
+      background: linear-gradient(90deg, rgba(200,16,46,0.15), rgba(200,16,46,0.05), rgba(200,16,46,0.15));
+      border-top: 1px solid rgba(200,16,46,0.3);
+      border-bottom: 1px solid rgba(200,16,46,0.3);
+      text-align: center; padding: .6rem;
+      font-size: .78rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--red-light);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .steps-row { flex-direction: column; }
+      .step:not(:last-child)::after { content: '↓'; right: auto; left: 50%; top: auto; bottom: -14px; transform: translateX(-50%); }
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <div class="badge">● Disponible pour nouvelles opportunités</div>
-            <h1>Data Analyst <span>Customer Experience</span></h1>
-            <p class="subtitle">
-                Transformant les feedbacks passagers en décisions stratégiques chez 
-                <strong>Royal Air Maroc</strong>
-            </p>
-            <div class="stats">
-                <div class="stat"><h3>3+</h3><p>Mois</p></div>
-                <div class="stat"><h3>4</h3><p>Langues</p></div>
-                <div class="stat"><h3>5+</h3><p>Outils</p></div>
-                <div class="stat"><h3>4</h3><p>Certifs</p></div>
-            </div>
-            <div class="buttons">
-                <a href="#experience" class="btn btn-primary">Explorer →</a>
-                <a href="mailto:mariamlaabil12@gmail.com" class="btn btn-secondary">📧 Email</a>
-                <a href="https://www.linkedin.com/in/mariem-l-105571239" target="_blank" class="btn btn-secondary">💼 LinkedIn</a>
-            </div>
-        </div>
-    </header>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">M<span>.</span>LAABIL</div>
+    <ul class="nav-links">
+      <li><a href="#projects">Projets</a></li>
+      <li><a href="#experience">Parcours</a></li>
+      <li><a href="#skills">Compétences</a></li>
+      <li><a href="#formation">Formation</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-    <section id="experience">
-        <div class="container">
-            <h2 class="section-title">Parcours</h2>
-            <p class="section-desc">Du commerce international à la Data Analytics CX.</p>
-            <div class="cards">
-                <div class="card featured">
-                    <div class="card-header">
-                        <h3>✈️ Royal Air Maroc</h3>
-                        <span class="date">Fév 2026</span>
-                    </div>
-                    <div class="role">CX & Data Analysis Intern</div>
-                    <p>Analyse des feedbacks détracteurs, suivi KPIs CX, détection de patterns et rapports d'insights.</p>
-                    <div class="tags">
-                        <span class="tag">Power BI</span>
-                        <span class="tag">SQL</span>
-                        <span class="tag">KPIs CX</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h3>🛒 3attar.ma</h3>
-                        <span class="date">Fév 2026</span>
-                    </div>
-                    <div class="role">Business Dev Manager</div>
-                    <p>Gestion projet digital, analyse performances e-commerce via ERP Odoo.</p>
-                    <div class="tags">
-                        <span class="tag">ERP Odoo</span>
-                        <span class="tag">E-commerce</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h3>🧪 Tradeasia</h3>
-                        <span class="date">Août 2025</span>
-                    </div>
-                    <div class="role">Sales Associate</div>
-                    <p>Analyse volumes de vente, segmentation client B2B, reporting mensuel.</p>
-                    <div class="tags">
-                        <span class="tag">Sales B2B</span>
-                        <span class="tag">Excel</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h3>📢 Preparia</h3>
-                        <span class="date">Juin 2024</span>
-                    </div>
-                    <div class="role">Marketing Intern</div>
-                    <p>Analyse de marché, étude concurrentielle, communication de résultats.</p>
-                    <div class="tags">
-                        <span class="tag">Marketing</span>
-                        <span class="tag">Benchmark</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- AVAILABLE STRIP -->
+  <div class="available-strip" style="margin-top:64px;">
+    ✦ &nbsp; Disponible pour nouvelles opportunités — Data Analytics &nbsp; ✦ &nbsp; Ouverte à une alternance ou CDI &nbsp; ✦
+  </div>
 
-    <section class="alt">
-        <div class="container">
-            <h2 class="section-title">Méthodologie</h2>
-            <p class="section-desc">Processus structuré en 5 étapes.</p>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-num">01</div>
-                    <div><h4>Collecte</h4><p>Feedbacks passagers, réclamations, données opérationnelles.</p></div>
-                </div>
-                <div class="arrow">↓</div>
-                <div class="step">
-                    <div class="step-num">02</div>
-                    <div><h4>Nettoyage</h4><p>Structuration et préparation des datasets.</p></div>
-                </div>
-                <div class="arrow">↓</div>
-                <div class="step">
-                    <div class="step-num">03</div>
-                    <div><h4>Analyse Mixte</h4><p>Qualitatif + Quantitatif, patterns et corrélations.</p></div>
-                </div>
-                <div class="arrow">↓</div>
-                <div class="step">
-                    <div class="step-num">04</div>
-                    <div><h4>Insights</h4><p>Causes racines et priorités d'action.</p></div>
-                </div>
-                <div class="arrow">↓</div>
-                <div class="step final">
-                    <div class="step-num">05</div>
-                    <div><h4>Remontées</h4><p>Rapports Power BI et recommandations management.</p></div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-accent"></div>
+    <div class="hero-content">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Open to new opportunities
+      </div>
+      <h1>Data Analyst<br /><span class="highlight">Customer</span><br />Experience</h1>
+      <p class="hero-sub">Transformant les feedbacks passagers en décisions stratégiques · Royal Air Maroc</p>
+      <div class="stats">
+        <div class="stat-item"><div class="stat-num">3+</div><div class="stat-label">Mois RAM</div></div>
+        <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Langues</div></div>
+        <div class="stat-item"><div class="stat-num">5+</div><div class="stat-label">Outils</div></div>
+        <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Certifs</div></div>
+        <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">Projets</div></div>
+      </div>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">Voir mes projets →</a>
+        <a href="mailto:mariamlaabil12@gmail.com" class="btn-outline">📧 Email</a>
+        <a href="https://www.linkedin.com/in/mariem-l-105571239" target="_blank" class="btn-outline">💼 LinkedIn</a>
+      </div>
+    </div>
+  </section>
 
-    <section id="skills">
-        <div class="container">
-            <h2 class="section-title">Compétences</h2>
-            <p class="section-desc">Stack technique complet.</p>
-            <div class="skill-grid">
-                <div class="skill-box">
-                    <h3>🔧 Data & Analytics</h3>
-                    <div class="skill-row">
-                        <div class="label"><span>SQL</span><span>85%</span></div>
-                        <div class="bar"><div class="bar-fill" style="width:85%"></div></div>
-                    </div>
-                    <div class="skill-row">
-                        <div class="label"><span>Power BI</span><span>80%</span></div>
-                        <div class="bar"><div class="bar-fill" style="width:80%"></div></div>
-                    </div>
-                    <div class="skill-row">
-                        <div class="label"><span>Excel</span><span>90%</span></div>
-                        <div class="bar"><div class="bar-fill" style="width:90%"></div></div>
-                    </div>
-                    <div class="skill-row">
-                        <div class="label"><span>SPSS/Jamovi</span><span>75%</span></div>
-                        <div class="bar"><div class="bar-fill" style="width:75%"></div></div>
-                    </div>
-                </div>
-                <div class="skill-box">
-                    <h3>💼 Business</h3>
-                    <div class="skill-row">
-                        <div class="label"><span>ERP Odoo</span><span>70%</span></div>
-                        <div class="bar"><div class="bar-fill" style="width:70%"></div></div>
-                    </div>
-                    <div class="skill-row">
-                        <div class="label"><span>MS Project</span><span>65%</span></div>
-                        <div class="bar"><div class="bar-fill" style="width:65%"></div></div>
-                    </div>
-                </div>
-                <div class="skill-box">
-                    <h3>🧠 Soft Skills</h3>
-                    <div class="skill-row">
-                        <div class="label"><span>Analyse critique</span><span>90%</span></div>
-                        <div class="bar"><div class="bar-fill" style="width:90%"></div></div>
-                    </div>
-                    <div class="skill-row">
-                        <div class="label"><span>Storytelling</span><span>85%</span></div>
-                        <div class="bar"><div class="bar-fill" style="width:85%"></div></div>
-                    </div>
-                    <div class="skill-row">
-                        <div class="label"><span>Autonomie</span><span>88%</span></div>
-                        <div class="bar"><div class="bar-fill" style="width:88%"></div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">Portfolio</div>
+    <h2>Mes Projets</h2>
+    <p class="section-sub">Projets concrets menés en entreprise et en stage.</p>
+    <div class="divider"></div>
+    <div class="projects-grid">
 
-    <section class="alt">
-        <div class="container">
-            <h2 class="section-title">Langues</h2>
-            <p class="section-desc">Communication multiculturelle.</p>
-            <div class="lang-grid">
-                <div class="lang-card">
-                    <div class="lang-flag">🇲🇦</div>
-                    <div><h4>Arabe</h4><p>Maternelle</p><div class="dots"><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div></div></div>
-                </div>
-                <div class="lang-card">
-                    <div class="lang-flag">🇫🇷</div>
-                    <div><h4>Français</h4><p>Bilingue</p><div class="dots"><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div></div></div>
-                </div>
-                <div class="lang-card">
-                    <div class="lang-flag">🇬🇧</div>
-                    <div><h4>Anglais</h4><p>Bilingue</p><div class="dots"><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div></div></div>
-                </div>
-                <div class="lang-card">
-                    <div class="lang-flag">🇪🇸</div>
-                    <div><h4>Espagnol</h4><p>B2</p><div class="dots"><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot"></div></div></div>
-                </div>
-            </div>
+      <!-- Project 1 -->
+      <div class="project-card">
+        <div class="project-org">✈️ Royal Air Maroc</div>
+        <div class="project-title">Analyse CX & Feedbacks Passagers</div>
+        <div class="project-period">Fév. 2026 — Présent · Stage de fin d'études</div>
+        <p class="project-desc">
+          Analyse de la satisfaction client au sein du département Customer Knowledge. Études mixtes qualitatives et quantitatives pour identifier les causes d'insatisfaction et orienter la stratégie CX.
+        </p>
+        <ul class="project-tasks">
+          <li>Conduite d'études qualitatives (entretiens, analyses thématiques)</li>
+          <li>Analyses quantitatives (enquêtes, données chiffrées)</li>
+          <li>Suivi des KPIs Customer Experience et benchmark sectoriel</li>
+          <li>Détection de patterns dans les réclamations passagers</li>
+          <li>Remontées d'insights clés pour le management (rapports Power BI)</li>
+        </ul>
+        <div class="project-highlight">
+          📊 Résultat : Rapports d'insights actionnables → Décisions stratégiques CX
         </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <h2 class="section-title">Formation</h2>
-            <div class="cards">
-                <div class="card">
-                    <h3>🎓 ENCG Marrakech</h3>
-                    <div class="role">Master Commerce International — 5ème Année</div>
-                    <p>2021 – 2026 | Spécialisation Data & CX</p>
-                </div>
-                <div class="card">
-                    <h3>🏆 Certifications 2026</h3>
-                    <p>
-                        • Fundamentals of Business Analysis — IBM<br/>
-                        • What is Data Science? — IBM<br/>
-                        • Research Methodologies — Queen Mary Univ.<br/>
-                        • Mastering Sales — Hult Business School
-                    </p>
-                </div>
-            </div>
+        <div class="tag-row">
+          <span class="tag">Power BI</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Excel</span>
+          <span class="tag">Méthodes Mixtes</span>
+          <span class="tag">KPIs CX</span>
         </div>
-    </section>
+      </div>
 
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <h2>Travaillons ensemble</h2>
-            <p>Je recherche une <strong>alternance</strong> ou <strong>CDI</strong> en Data Analytics CX.</p>
-            <div class="contact-links">
-                <a href="mailto:mariamlaabil12@gmail.com" class="contact-link">📧 Email</a>
-                <a href="tel:+212622932540" class="contact-link">📱 +212 6 22 93 25 40</a>
-                <a href="https://www.linkedin.com/in/mariem-l-105571239" target="_blank" class="contact-link">💼 LinkedIn</a>
-            </div>
-            <div class="form-box">
-                <form action="https://formspree.io/f/mariemlaabil12@gmail.com" method="POST">
-                    <div class="form-group">
-                        <label>Nom</label>
-                        <input type="text" name="name" placeholder="Votre nom" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" name="email" placeholder="votre@email.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Sujet</label>
-                        <input type="text" name="subject" placeholder="Proposition" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Message</label>
-                        <textarea name="message" placeholder="Bonjour Mariem..." required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Envoyer →</button>
-                </form>
-            </div>
+      <!-- Project 2 -->
+      <div class="project-card">
+        <div class="project-org">📢 Preparia · Elaraki International School</div>
+        <div class="project-title">Campagne Marketing & Communication</div>
+        <div class="project-period">Juin — Juillet 2024 · Stage Marketing</div>
+        <p class="project-desc">
+          Participation active au projet PREPARIA, visant à préparer les lycéens aux concours des grandes écoles marocaines. Conception et exécution d'une campagne promotionnelle digitale et radio.
+        </p>
+        <ul class="project-tasks">
+          <li>Conception et exécution d'une campagne promotionnelle multicanal</li>
+          <li>Création de contenu éducatif et gestion de la page Instagram PREPARIA</li>
+          <li>Coordination avec des stations radio pour la promotion du projet</li>
+          <li>Analyse de marché et étude concurrentielle</li>
+        </ul>
+        <div class="project-highlight">
+          🚀 Résultat : +10 000 inscriptions générées par la campagne
         </div>
-    </section>
+        <div class="tag-row">
+          <span class="tag">Marketing Digital</span>
+          <span class="tag">Instagram</span>
+          <span class="tag">Canva</span>
+          <span class="tag">Benchmark</span>
+          <span class="tag">Communication</span>
+        </div>
+      </div>
 
-    <footer>
-        <p>© 2026 Mariem Laabil — ENCG Marrakech • Commerce International</p>
-        <p>📍 Marrakech, Maroc</p>
-    </footer>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label">Parcours</div>
+    <h2>Expériences</h2>
+    <p class="section-sub">Du commerce international à la Data Analytics CX.</p>
+    <div class="divider"></div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="tl-date">Fév. 2026 — Présent</div>
+        <div class="tl-company">✈️ Royal Air Maroc</div>
+        <div class="tl-role">CX & Data Analysis Intern · Customer Knowledge</div>
+        <p class="tl-desc">Analyse des feedbacks détracteurs, suivi KPIs CX, détection de patterns et rapports d'insights pour le management.</p>
+        <div class="tl-tags"><span class="tl-tag">Power BI</span><span class="tl-tag">SQL</span><span class="tl-tag">KPIs CX</span></div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-date">Fév. 2026</div>
+        <div class="tl-company">🛒 3attar.ma</div>
+        <div class="tl-role">Business Dev Manager · Freelance</div>
+        <p class="tl-desc">Gestion projet digital, analyse performances e-commerce via ERP Odoo.</p>
+        <div class="tl-tags"><span class="tl-tag">ERP Odoo</span><span class="tl-tag">E-commerce</span></div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-date">Août — Nov. 2025</div>
+        <div class="tl-company">🧪 Tradeasia International</div>
+        <div class="tl-role">Chemical Sales Associate</div>
+        <p class="tl-desc">Prospection et emailing ciblés, contacts directs avec clients internationaux, closing deals et suivi commercial B2B.</p>
+        <div class="tl-tags"><span class="tl-tag">Sales B2B</span><span class="tl-tag">Excel</span></div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-date">Juin — Août 2025</div>
+        <div class="tl-company">🌐 Unity Global Trade</div>
+        <div class="tl-role">Assistante Import-Export</div>
+        <p class="tl-desc">Suivi administratif des commandes et logistique. Communications avec fournisseurs et clients internationaux. Négociation contrats commerciaux.</p>
+        <div class="tl-tags"><span class="tl-tag">Logistique</span><span class="tl-tag">Import-Export</span></div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-date">Juin — Juil. 2024</div>
+        <div class="tl-company">📢 Preparia · Elaraki School</div>
+        <div class="tl-role">Marketing & Communication Intern</div>
+        <p class="tl-desc">Campagne promotionnelle ayant généré +10 000 inscriptions. Création de contenu éducatif et gestion Instagram.</p>
+        <div class="tl-tags"><span class="tl-tag">Marketing</span><span class="tl-tag">Canva</span><span class="tl-tag">Instagram</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- METHODOLOGY -->
+  <section id="methodology">
+    <div class="section-label">Process</div>
+    <h2>Méthodologie</h2>
+    <p class="section-sub">Processus structuré en 5 étapes — de la collecte aux décisions stratégiques.</p>
+    <div class="divider"></div>
+    <div class="steps-row">
+      <div class="step"><div class="step-num">01</div><div class="step-title">Collecte</div><div class="step-desc">Feedbacks passagers, réclamations, données opérationnelles</div></div>
+      <div class="step"><div class="step-num">02</div><div class="step-title">Nettoyage</div><div class="step-desc">Structuration et préparation des datasets</div></div>
+      <div class="step"><div class="step-num">03</div><div class="step-title">Analyse Mixte</div><div class="step-desc">Qualitatif + Quantitatif, patterns et corrélations</div></div>
+      <div class="step"><div class="step-num">04</div><div class="step-title">Insights</div><div class="step-desc">Causes racines et priorités d'action</div></div>
+      <div class="step" style="border-left: 4px solid var(--red);"><div class="step-num" style="opacity:1;">05</div><div class="step-title">Remontées</div><div class="step-desc">Rapports Power BI et recommandations management</div></div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label">Stack</div>
+    <h2>Compétences</h2>
+    <p class="section-sub">Stack technique complet.</p>
+    <div class="divider"></div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>🔧 Data <span>&</span> Analytics</h3>
+        <div class="skill-bar-wrap"><div class="skill-name-row"><span>SQL</span><span class="skill-pct">85%</span></div><div class="bar-bg"><div class="bar-fill" style="width:85%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-name-row"><span>Power BI</span><span class="skill-pct">80%</span></div><div class="bar-bg"><div class="bar-fill" style="width:80%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-name-row"><span>Excel</span><span class="skill-pct">90%</span></div><div class="bar-bg"><div class="bar-fill" style="width:90%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-name-row"><span>SPSS / Jamovi</span><span class="skill-pct">75%</span></div><div class="bar-bg"><div class="bar-fill" style="width:75%"></div></div></div>
+      </div>
+      <div class="skill-group">
+        <h3>💼 Business <span>Tools</span></h3>
+        <div class="skill-bar-wrap"><div class="skill-name-row"><span>ERP Odoo</span><span class="skill-pct">70%</span></div><div class="bar-bg"><div class="bar-fill" style="width:70%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-name-row"><span>MS Project</span><span class="skill-pct">65%</span></div><div class="bar-bg"><div class="bar-fill" style="width:65%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-name-row"><span>Canva / Adobe CC</span><span class="skill-pct">80%</span></div><div class="bar-bg"><div class="bar-fill" style="width:80%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-name-row"><span>Bonitasoft</span><span class="skill-pct">60%</span></div><div class="bar-bg"><div class="bar-fill" style="width:60%"></div></div></div>
+      </div>
+      <div class="skill-group">
+        <h3>🧠 Soft <span>Skills</span></h3>
+        <div class="skill-bar-wrap"><div class="skill-name-row"><span>Analyse critique</span><span class="skill-pct">90%</span></div><div class="bar-bg"><div class="bar-fill" style="width:90%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-name-row"><span>Storytelling data</span><span class="skill-pct">85%</span></div><div class="bar-bg"><div class="bar-fill" style="width:85%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-name-row"><span>Autonomie</span><span class="skill-pct">88%</span></div><div class="bar-bg"><div class="bar-fill" style="width:88%"></div></div></div>
+        <div class="skill-bar-wrap"><div class="skill-name-row"><span>Communication</span><span class="skill-pct">85%</span></div><div class="bar-bg"><div class="bar-fill" style="width:85%"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section id="langues">
+    <div class="section-label">Langues</div>
+    <h2>Communication Multiculturelle</h2>
+    <div class="divider"></div>
+    <div class="lang-grid">
+      <div class="lang-card"><div class="lang-flag">🇲🇦</div><div class="lang-name">Arabe</div><div class="lang-level">Maternelle</div></div>
+      <div class="lang-card"><div class="lang-flag">🇫🇷</div><div class="lang-name">Français</div><div class="lang-level">Bilingue</div></div>
+      <div class="lang-card"><div class="lang-flag">🇬🇧</div><div class="lang-name">Anglais</div><div class="lang-level">Bilingue</div></div>
+      <div class="lang-card"><div class="lang-flag">🇪🇸</div><div class="lang-name">Espagnol</div><div class="lang-level">B2</div></div>
+    </div>
+  </section>
+
+  <!-- FORMATION -->
+  <section id="formation">
+    <div class="section-label">Formation</div>
+    <h2>Éducation & Certifications</h2>
+    <div class="divider"></div>
+
+    <div class="edu-card">
+      <div class="edu-school">🎓 ENCG Marrakech</div>
+      <div class="edu-degree">Master Commerce International — 5ème Année · Spécialisation Data & CX</div>
+      <div class="edu-period">2021 – 2026</div>
+    </div>
+
+    <h3 style="font-family:'Barlow Condensed',sans-serif; font-size:1.2rem; margin-bottom:1rem; color:var(--grey);">🏆 Certifications 2026</h3>
+    <div class="certs-grid">
+      <div class="cert-item"><div class="cert-icon">🏅</div><div><div class="cert-name">Fundamentals of Business Analysis</div><div class="cert-by">IBM</div></div></div>
+      <div class="cert-item"><div class="cert-icon">🏅</div><div><div class="cert-name">What is Data Science?</div><div class="cert-by">IBM</div></div></div>
+      <div class="cert-item"><div class="cert-icon">🏅</div><div><div class="cert-name">Research Methodologies</div><div class="cert-by">Queen Mary University London</div></div></div>
+      <div class="cert-item"><div class="cert-icon">🏅</div><div><div class="cert-name">Mastering Sales</div><div class="cert-by">Hult International Business School</div></div></div>
+      <div class="cert-item"><div class="cert-icon">🏅</div><div><div class="cert-name">Global Classroom — Volunteer</div><div class="cert-by">AIESEC · Gaziantep, Turquie · 2022</div></div></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">Contact</div>
+    <h2>Travaillons Ensemble</h2>
+    <p class="section-sub" style="margin-bottom:0">Je recherche une <strong>alternance</strong> ou un <strong>CDI</strong> en Data Analytics CX.</p>
+    <div class="divider"></div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p>Disponible immédiatement pour discuter de toute opportunité en Data Analytics, Customer Experience ou Business Intelligence.</p>
+        <div class="contact-links">
+          <a href="mailto:mariamlaabil12@gmail.com" class="contact-link"><div class="contact-link-icon">📧</div>mariamlaabil12@gmail.com</a>
+          <a href="tel:+212622932540" class="contact-link"><div class="contact-link-icon">📱</div>+212 6 22 93 25 40</a>
+          <a href="https://www.linkedin.com/in/mariem-l-105571239" target="_blank" class="contact-link"><div class="contact-link-icon">💼</div>LinkedIn · Mariem Laabil</a>
+          <a class="contact-link"><div class="contact-link-icon">📍</div>Marrakech, Maroc</a>
+        </div>
+      </div>
+      <div>
+        <div class="contact-form">
+          <div class="form-row">
+            <input class="form-input" type="text" placeholder="Nom" />
+            <input class="form-input" type="email" placeholder="Email" />
+          </div>
+          <input class="form-input" type="text" placeholder="Sujet" />
+          <textarea class="form-textarea" placeholder="Message…"></textarea>
+          <button class="btn-submit">Envoyer →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Mariem Laabil — ENCG Marrakech · Commerce International &nbsp;|&nbsp; 📍 Marrakech, Maroc
+  </footer>
 
 </body>
 </html>
